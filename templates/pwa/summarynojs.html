@@ -1,0 +1,123 @@
+<!--
+ Your First PWA Codelab (https://g.co/codelabs/pwa)
+
+ Copyright 2019 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report{* with .meta *} {* .Year *} {* .Reporter *} {* end *}</title>
+  <meta name="codelab" content="your-first-pwa-v3">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2F3BA2" />
+<link href="/styles/main.css" type="text/css" rel="stylesheet" />
+<style>
+html, body {
+  font: 13px/18px sans-serif;
+}
+select {
+  min-width: 300px;
+}
+</style>
+</head>
+<body>
+  <header class="header">
+    <h1>
+      Summary Work Report
+      </a>
+    </h1>
+  </header>
+  <main class="main">
+    
+<div class="report-card">
+  <table cellspacing="0" border="0" id="summarytable">
+  <colgroup width="88"></colgroup>
+  <colgroup span="3" width="80"></colgroup>
+  <tr>
+    <td colspan=4 height="23" align="left" valign=bottom sdnum="1049;1049;Standard">
+      <u><font size=4 color="#000000">Calculation for {* with .meta *}{* .Reporter *} {* end *}(w/o current month) </font></u>
+    </td>
+  </tr>
+  <tr>
+    <td height="18" align="left" valign=bottom sdnum="1049;1049;Standard"><font color="#000000"><br></font></td>
+    <td align="center" valign=bottom sdnum="1049;1049;Standard"><font color="#000000"><br></font></td>
+    <td align="center" valign=bottom sdnum="1049;1049;Standard"><font color="#000000"><br></font></td>
+    <td align="center" valign=bottom sdnum="1049;1049;Standard"><font color="#000000"><br></font></td>
+  </tr>
+  <tr>
+    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom sdnum="1049;1049;Standard"><font color="#000000">Monthes<br></font></td>
+    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom sdnum="1049;1049;Standard"><b><font color="#000000">Needed (minutes)</font></b></td>
+    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom sdnum="1049;1049;Standard"><b><font color="#000000">Worked (minutes)</font></b></td>
+    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom bgcolor="#FFCC00" sdnum="1049;1049;Standard"><b><font color="#000000">Debts (hours)</font></b></td>
+  </tr>
+    {* range .bymonth *}
+  <tr>        
+      <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="18" align="left" valign=bottom sdnum="1049;1049;Standard"><font color="#000000">{*.Month*}</font></td>
+      <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom sdval="1" sdnum="1049;1049;Standard"><font color="#000000">{*.Needed*}</font></td>
+      <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom sdval="23" sdnum="1049;1049;Standard"><font color="#000000">{*.WorkedOut*}</font></td>
+      <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom bgcolor="#FFCC00" sdval="1" sdnum="1049;1049;Standard"><font color="#000000">{*.WorkedDebt*}</font></td>
+  </tr>
+    {* end *}
+  <tr>
+    <td height="18" align="left" valign=bottom sdnum="1049;1049;Standard"><font color="#000000"><br></font></td>
+    <td align="center" valign=bottom sdnum="1049;1049;Standard"><font color="#000000">All your<br></font></td>
+    <td align="center" valign=bottom sdnum="1049;1049;Standard"><font color="#000000">vacations:<br></font></td>
+    <td align="center" valign=bottom sdnum="1049;1049;Standard"><font color="#000000">{* .vacations *}<br></font></td>
+  </tr>
+    {* with .summary *}
+  <tr>
+    <td height="18" align="right" valign=bottom sdnum="1049;1049;Standard"><b><font color="#000000">Summary:</font></b></td>
+    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom sdval="12" sdnum="1049;1049;Standard"><font color="#000000">{* .Needed *}</font></td>
+    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom sdval="111" sdnum="1049;1049;Standard"><font color="#000000">{* .WorkedOut *}</font></td>
+    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=bottom bgcolor="#FFD320" sdval="123" sdnum="1049;1049;Standard"><font color="#000000">{* .WorkedDebt *}h (~{* .WorkedDebtDays *} days)</font></td>
+  </tr>
+    {* end *}
+</table>
+      <p>
+        <a href="/" class="powered-by">
+        Go back
+      </a>
+      </p>
+</div>
+
+<!-- using string template here to work around HTML <option> placement restriction >
+  <div class="report-card">
+      <form action="/fileupload" method="POST" class="dropzone dz-clickable" id="my-dropzone">       
+        <div class="dz-default dz-message">
+            <span>Drop files here to upload</span>
+        </div>
+     </form>
+  </div-->
+  </main>
+  <!--
+        // {monthId:1, month:"January", needed:22*8, worked_out:123}, //22wd
+        // {month:"2", needed:20*8, worked_out:"124"}, //20wd
+        // {month:"3", needed:21*8, worked_out:"125"}, //21wd
+        // {month:"4", needed:22*8, worked_out:"126"}, //22wd
+        // {month:"5", needed:22*8, worked_out:"127"}, //22wd
+        // {month:"6", needed:20*8, worked_out:"128"}, //20wd
+        // {month:"7", needed:22*8, worked_out:"129"}, //22wd
+        // {month:"8", needed:22*8, worked_out:"120"}, //22wd
+        // {month:"9", needed:20*8, worked_out:"126"}, //20wd
+        // {month:"10", needed:23*8, worked_out:"789"}, //23wd
+        // {month:"11", needed:20*8, worked_out:"183"}, //20wd
+        // {month:"12", needed:21*8, worked_out:"19" }  //21wd
+      -->
+</body>
+</html>

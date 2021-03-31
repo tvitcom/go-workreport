@@ -1,6 +1,7 @@
 ## secured files
 /info/*
 /example_report.xlsx*
+/logs/*
 /data/*
 /distr/i686/projectapp
 /distr/x86_64/projectapp
