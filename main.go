@@ -1,25 +1,25 @@
 package main
 
 import (
-	"fmt"
-	"io"
-	"log"
-	"os"
 	"crypto/md5"
 	"encoding/hex"
 	"errors"
+	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"github.com/gin-gonic/gin"
+	"io"
+	"log"
 	"my.localhost/funny/workreport/mstime"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strconv"
 	"time"
 )
 
 var (
-	clientIp string
-	isPrivate	bool
+	clientIp           string
+	isPrivate          bool
 	dimLen             int
 	err                error
 	currYearNeededDays [12]int = [12]int{22, 20, 21, 22, 22, 20, 22, 22, 20, 23, 20, 21}
@@ -141,7 +141,6 @@ func main() {
 		c.HTML(http.StatusUnsupportedMediaType, "error.html", gin.H{"status": "404", "cause": "It is not a http page"})
 	})
 
-
 	router.POST("/fileupload", func(c *gin.Context) {
 
 		file, _ := c.FormFile("reportfile")
@@ -206,8 +205,8 @@ func main() {
 }
 
 func GetMD5Hash(text string) string {
-    hash := md5.Sum([]byte(text))
-    return hex.EncodeToString(hash[:])
+	hash := md5.Sum([]byte(text))
+	return hex.EncodeToString(hash[:])
 }
 
 func xlsxValIdation(mimetype string) (err error) {
@@ -241,18 +240,9 @@ func (env *Env) ParseReport(filepath string, isPrivate bool) (ViewSummary, error
 	// Walk by sheets (MONTHES:)
 	sheetMonthes := f.GetSheetMap()
 
-	// fmt.Println("MONTHES:", sheetMonthes)
-
 	for iSheet, sheetName := range sheetMonthes {
 		var monthYeld int
 		mData := MonthesReport{}
-
-		//!!!TEST ONLY!!!
-		// if sheetName != "October" {
-		// 	continue
-		// }
-
-		// fmt.Println("SHEET:", sheetName, iSheet)
 
 		// Walk by rows
 		rows, err := f.GetRows(sheetName)
@@ -279,24 +269,13 @@ func (env *Env) ParseReport(filepath string, isPrivate bool) (ViewSummary, error
 			Name = "Private Person"
 		}
 
-		// Manager := rows[reportManagerRow][reportManagerCell]
-
-		// UserId := models.GetUserIdByName(env.db, Name)
-		// ManagerId := models.GetUserIdByName(env.db, Manager)
-		// lastAttemptId := models.GetWorkreportLastAttemptId(env.db, UserId)
-
-		// fmt.Println("LAST ATTEMPT:", lastAttemptId)
-		// AttemptId := lastAttemptId + 1
-		// fmt.Println("REPORT USER_Id:", UserId, "USER:", Name)
-		// fmt.Println("REPORT MANAGER:", ManagerId, "MANAGER:", Manager)
-
 		// Walk by cells (TASKS:)
 		maxRowAddr := len(rows)
 		// var DayDurationItem int // In minutes
 		// var DayDurationSumm []int // Slice of items
 		for i := reportStartRecords; i < maxRowAddr; i++ {
 
-			/* PROTOTYPING:
+			/* test PROTOTYPING:
 			CELL: 0 43493
 			CELL: 1 Mon
 			CELL: 2 0.520833333333333
@@ -306,27 +285,12 @@ func (env *Env) ParseReport(filepath string, isPrivate bool) (ViewSummary, error
 			CELL: 6 DDL-2107 Security improvement - exclude tilda files
 			*/
 
-			// Если найден день с заданиями (поле i[2] != "") то:
-			// if rows[i][2] != "" {
-			// 	days, _ := strconv.Atoi(rows[i][0])
-			// 	_, _, dayNum := mstime.GetDateByDayNumber(days)
-			// 	duration, _ := mstime.GetStringTime(rows[i][4], true, false)
-
-			// 	// inMinutes, _ := mstime.GetDurateInMinutes("00:00", duration)
-			// 	// fmt.Println("FORUND WORK:", "AttemptId:", AttemptId, "MonthNum:", iSheet, "DayNum", dayNum, "duration:", inMinutes, "proj:", rows[i][5], "taskname:", rows[i][6])
-			// }
-
 			days, _ := mstime.GetStringTime(rows[i][4], true, false)
 			inMinutes, _ := mstime.GetDurateInMinutes("00:00", days)
 			if rows[i][0] == "" && rows[i][3] == "TOTAL" {
 				// fmt.Println("TOTAL for day:", inMinutes)
 				monthYeld = monthYeld + inMinutes
-			} //else if rows[i][2] != "" {
-			// 	lenDayDurationSumm = len(DayDurationSumm)
-			// 	DayDurationSumm = append(DayDurationSumm, inMinutes)
-			// } else {
-
-			// }
+			}
 
 			/*
 				Workreport struct {
@@ -341,8 +305,7 @@ func (env *Env) ParseReport(filepath string, isPrivate bool) (ViewSummary, error
 				  Task_name  string
 				}
 			*/
-			//Save it is record into database
-
+            //TODO: Save it is record into database
 		}
 
 		mData.MonthId = iSheet
