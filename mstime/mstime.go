@@ -1,28 +1,29 @@
 // https://stackoverflow.com/questions/17140652/read-time-from-excel-sheet-using-xlrd-in-time-format-and-not-in-float
 package mstime
+
 //package main
 
 import (
+	"errors"
 	"fmt"
 	"log"
-	"time"
 	"math"
-	"errors"
+	"regexp"
 	"strconv"
 	"strings"
-	"regexp"
+	"time"
 )
 
-const(
+const (
 	PRODMODE bool = false
 )
 
 // The function return hours, minutes, seconds
 func GetStringTime(str string, hour24 bool, ns bool) (s string, e error) {
-    var hours, minutes, seconds float64 
-    var ost float64;
-    var alfabetWithoutE string = "abcdefghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ"
-	l:=len(str);
+	var hours, minutes, seconds float64
+	var ost float64
+	var alfabetWithoutE string = "abcdefghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ"
+	l := len(str)
 	if l < 1 || strings.ContainsAny(str, alfabetWithoutE) {
 		return "0d", nil
 	}
@@ -31,54 +32,54 @@ func GetStringTime(str string, hour24 bool, ns bool) (s string, e error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	if t >= 2 || t < 0 {
-		s , e = timeFormat(0, 0, 0, ns)
-        return s ,errors.New("Error in incoming time number")
+		s, e = timeFormat(0, 0, 0, ns)
+		return s, errors.New("Error in incoming time number")
 	} else if t > 1 {
 		t = t - 1
 	}
 
 	seconds = t * 86400
-    seconds = math.Ceil(seconds)
+	seconds = math.Ceil(seconds)
 	hours, ost = math.Modf(seconds / 3600)
 	minutes, ost = math.Modf(ost * 60)
-    seconds, ost = math.Modf(ost * 60)
+	seconds, ost = math.Modf(ost * 60)
 
-    if hour24 {
+	if hour24 {
 		if hours > 12 {
 			hours -= 12
-            s, e =  timeFormat(hours, minutes, seconds, ns)
+			s, e = timeFormat(hours, minutes, seconds, ns)
 			return s, e
 		} else {
-            s , e =  timeFormat(hours, minutes, seconds, ns)
-			return s , e
-        }
+			s, e = timeFormat(hours, minutes, seconds, ns)
+			return s, e
+		}
 	}
-	s, e =  timeFormat(hours, minutes, seconds, ns)
+	s, e = timeFormat(hours, minutes, seconds, ns)
 	return s, e
 }
 
 func timeFormat(h, m, s float64, nosec bool) (o string, e error) {
-    if !nosec {
-        o = fmt.Sprintf("%02.0f:%02.0f", h, m)
-    } else {
-        o = fmt.Sprintf("%02.0f:%02.0f:%02.0f", h, m, s)
-    }
-    return o, e
+	if !nosec {
+		o = fmt.Sprintf("%02.0f:%02.0f", h, m)
+	} else {
+		o = fmt.Sprintf("%02.0f:%02.0f:%02.0f", h, m, s)
+	}
+	return o, e
 }
 
 func GetDurateInMinutes(start, finish string) (int, error) {
 	hm_format := "15:04"
 	rexp := `([2]{1}[0-3]{1})|([01]{1}[0-9]{1})[\:]{1}[0-5]{1}[0-9]{1}`
 	re := regexp.MustCompile(rexp)
-    validT := re.MatchString(start)
+	validT := re.MatchString(start)
 	if validT {
 		t1, _ := time.Parse(hm_format, start)
 		t2, _ := time.Parse(hm_format, finish)
-	    return int(math.Round(t2.Sub(t1).Minutes())), nil
+		return int(math.Round(t2.Sub(t1).Minutes())), nil
 	}
-    return 0, errors.New("Time dont match")
+	return 0, errors.New("Time dont match")
 }
 
 // In 1900 mode, Excel takes dates in floating point numbers of days starting with Jan 1 1900.
