@@ -1,6 +1,5 @@
 ## secured files
 /info/*
-/example_report.xlsx*
 /logs/*
 /data/*
 /distr/i686/projectapp
@@ -33,7 +32,6 @@ old_*
 *.swp
 */*.swp
 */_old*
-/go.mod
 /go.sum
 
 ## common files
@@ -48,3 +46,5 @@ old_*
 /favicon.ico
 /*.sublime-project
 /*.sublime-workspace
+/*.xlsx
+!/example_report.xlsx
