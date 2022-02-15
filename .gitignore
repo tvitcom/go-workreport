@@ -20,7 +20,7 @@
 !/filestorage/userpic/1_60x60.jpeg
 !/filestorage/userpic/2_60x60.jpeg
 !/filestorage/index.html
-/filestorage/uploaded
+/filestorage/uploaded/
 !/filestorage/uploaded/index.html
 /public/*
 !/public/index.html
@@ -46,5 +46,4 @@ old_*
 /favicon.ico
 /*.sublime-project
 /*.sublime-workspace
-/*.xlsx
-!/example_report.xlsx
+/*.xlsx*
