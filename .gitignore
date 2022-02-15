@@ -15,6 +15,7 @@
 /API.md*
 /GPDR_POLICY.txt*
 /filestorage/*
+/uploaded/*
 !/filestorage/userpic
 !/filestorage/userpic/index.html
 !/filestorage/userpic/1_60x60.jpeg
